@@ -1,0 +1,6 @@
+/*树形公共组件统一样式*/
+.commonTreeStyle {
+  width: calc(100%);
+  height: 600px;
+  overflow-y: auto;
+}

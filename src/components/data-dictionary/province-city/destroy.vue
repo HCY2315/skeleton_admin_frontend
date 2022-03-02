@@ -1,0 +1,35 @@
+<template>
+  <Modal
+    v-model="destory.IsShowModel"
+    title="删除数据确认"
+    @on-ok="destroyData(destory.id)"
+  >
+    <p>确认删除吗?</p>
+  </Modal>
+</template>
+
+<script>
+import {destory} from '@/api/data-dictionary/province_city'
+import common_func from '@/libs/common_func'
+
+export default {
+  name: "destroy",
+  props: ["destory"],
+  methods: {
+    destroyData(id) {
+      destory(id).then(res => {
+        if (res.data.code === 200) {
+          this.$emit('destroy_after')
+          common_func.Curd.SuccessTips(this, res.data.msg)
+        }
+      }).catch(res => {
+        common_func.Curd.FailTips(this, res.data.msg+res.data.data)
+      })
+    }
+  }
+}
+</script>
+
+<style scoped>
+
+</style>
